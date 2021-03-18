@@ -201,7 +201,13 @@ int main(int argc, char** argv) {
     puzzle.column_amounts = column_amounts;
 
     solve(&puzzle, 0);
-    print_grid(puzzle.grid, puzzle.dimension);
+
+    if (is_fully_discovered(&puzzle) && is_valid_grid(&puzzle)) {
+        printf("Found solution:\n");
+        print_grid(puzzle.grid, puzzle.dimension);
+    } else {
+        printf("No solution was found\n");
+    }
 
     free(row_amounts);
     free(column_amounts);
